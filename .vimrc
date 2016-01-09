@@ -37,7 +37,6 @@ set showmatch " 対応する括弧などをハイライト表示する
 " inoremap << <><LEFT>
 set matchpairs& matchpairs+=<:> " 対応括弧に'<'と'>'のペアを追加
 set backspace=indent,eol,start " バックスペースでなんでも消せるようにする
-"set paste
 " クリップボードの有効化。
 set clipboard+=unnamed
 
@@ -127,7 +126,7 @@ nnoremap <silent> ,y :<C-u>Unite history/yank <CR>
 NeoBundle 'Shougo/neosnippet'
 NeoBundle 'Shougo/neosnippet-snippets'
 
-" 編集中のファイルの編集。
+" 編集中のファイルの実行。
 NeoBundle 'thinca/vim-quickrun'
 let g:quickrun_config = {'*': {'hook/time/enable': '1'},}
 
