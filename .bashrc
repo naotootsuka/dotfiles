@@ -1,5 +1,6 @@
 # vim
-export VIMRUNTIME=/usr/local/Cellar/vim/7.4.898/share/vim/vim74
+# export VIMRUNTIME=/usr/local/Cellar/vim/7.4.898/share/vim/vim74
+export VIMRUNTIME=/usr/local/Cellar/vim/7.4.712_1/share/vim/vim74
 
 #python
 #alias python="/usr/local/bin/python"
