@@ -22,6 +22,7 @@ set colorcolumn=80 " その代わり80文字目にラインを入れる
 " デフォルト不可視文字は美しくないのでUnicodeで綺麗に
 "set listchars=tab:»-,trail:-,extends:»,precedes:«,nbsp:%,eol:↲
 set laststatus=2 " 画面最下部のステータス行を常に表示。
+set cursorline " カーソル行の色の変更。
 
 " 編集関係
 "set virtualedit=all " カーソルを文字が存在しない部分でも動けるようにする
@@ -51,6 +52,13 @@ set incsearch " インクリメンタルサーチを行う。
 set wildmenu " コマンドモードでの補完モード。
 set wildmode=list:full " 補完モードの表示方法の指定。
 set wildignore=*.o,*.obj,*.pyc,*.so,*.dll " 無視されるファイルパターン。
+"検索語が画面の真ん中に来るようにする
+nmap n nzz 
+nmap N Nzz 
+nmap * *zz 
+nmap # #zz 
+nmap g* g*zz 
+nmap g# g#zz
 
 " キーバインド
 noremap <S-h> ^
@@ -60,6 +68,7 @@ nnoremap k gk
 nnoremap <Down> gj
 nnoremap <Up>   gk
 nnoremap ,p "*p
+inoremap <silent> jj <ESC>
 
 " 編集中のファイルを実行する系
 " http://qiita.com/smison/items/58a18b2bb27f2eff2f2a
@@ -90,7 +99,7 @@ call neobundle#begin(expand('~/.vim/bundle/'))
 "    \}}
 
 NeoBundle 'Align'
-NeoBundle 'davidhalter/jedi-vim'
+" NeoBundle 'davidhalter/jedi-vim'
 "NeoBundle 'git://github.com/kevinw/pyflakes-vim.git'
 NeoBundle 'mattn/emmet-vim'
 NeoBundle 'Townk/vim-autoclose'

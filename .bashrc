@@ -11,16 +11,19 @@ export VIMRUNTIME=/usr/local/Cellar/vim/7.4.898/share/vim/vim74
 export PATH=/usr/local/bin:$PATH
 
 # GAE
-#export PATH=/Applications/GoogleAppEngineLauncher.app/Contents/Resources/GoogleAppEngine-default.bundle/Contents/Resources/google_appengine:$PATH
-#export PYTHONPATH=/Applications/GoogleAppEngineLauncher.app/Contents/Resources/GoogleAppEngine-default.bundle/Contents/Resources/google_appengine:$PYHTONPATH
+# export PATH=/Applications/GoogleAppEngineLauncher.app/Contents/Resources/GoogleAppEngine-default.bundle/Contents/Resources/google_appengine/lib:$PATH
+export PYTHONPATH=/Applications/GoogleAppEngineLauncher.app/Contents/Resources/GoogleAppEngine-default.bundle/Contents/Resources/google_appengine/lib:$PYTHONPATH
+# export PATH=/Applications/GoogleAppEngineLauncher.app/Contents/Resources/GoogleAppEngine-default.bundle/Contents/Resources/google_appengine:$PATH
+export PYTHONPATH=/Applications/GoogleAppEngineLauncher.app/Contents/Resources/GoogleAppEngine-default.bundle/Contents/Resources/google_appengine:$PYTHONPATH
 
 # Django
 #export PYTHONPATH=/usr/local/bin:$PYTHONPATH
-export PYTHONPATH=~/dropbox/python関係/django/testproject:$PYTHONPATH
-export PYTHONPATH=~/dropbox/python関係/django/testproject/testproject:$PYTHONPATH
-export DJANGO_SETTINGS_MODULE=testproject.settings
 #export PYTHONPATH=~/dropbox/python関係/django/synonym:PYTHONPATH
 #export DJANGO_SETTINGS_MODULE=synonym.settings
+# 2016/01/18 一時的に以下をコメント
+# export PYTHONPATH=~/dropbox/python関係/django/testproject:$PYTHONPATH
+# export PYTHONPATH=~/dropbox/python関係/django/testproject/testproject:$PYTHONPATH
+# export DJANGO_SETTINGS_MODULE=testproject.settings
 
 #pip
 export PYTHONIOENCODING=utf-8
