@@ -99,7 +99,7 @@ call neobundle#begin(expand('~/.vim/bundle/'))
 "    \}}
 
 NeoBundle 'Align'
-" NeoBundle 'davidhalter/jedi-vim'
+NeoBundle 'davidhalter/jedi-vim'
 "NeoBundle 'git://github.com/kevinw/pyflakes-vim.git'
 NeoBundle 'mattn/emmet-vim'
 NeoBundle 'Townk/vim-autoclose'
