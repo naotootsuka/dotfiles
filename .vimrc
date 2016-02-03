@@ -148,6 +148,13 @@ NeoBundle 'kana/vim-textobj-user'
 " インデントレベルを操作可能。
 NeoBundle 'kana/vim-textobj-indent'
 
+" HTML関係。
+NeoBundle 'hail2u/vim-css3-syntax'
+NeoBundle 'othree/html5.vim'
+
+" JavaScript
+NeoBundle 'pangloss/vim-javascript'
+
 NeoBundle 'nathanaelkane/vim-indent-guides'
 call neobundle#end()
 " vim-indent-guidesの設定。
