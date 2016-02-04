@@ -72,7 +72,10 @@ inoremap <silent> jj <ESC>
 
 " 編集中のファイルを実行する系
 " http://qiita.com/smison/items/58a18b2bb27f2eff2f2a
-autocmd BufNewFile,BufRead *.py nnoremap <C-e> :!python %
+" autocmd BufNewFile,BufRead *.py nnoremap <C-e> :!python %
+
+" Python関係
+autocmd FileType python setlocal completeopt-=preview
 
 " lilypond用
 set runtimepath+=/applications/LilyPond.app/contents/resources/share/lilypond/current/vim/
