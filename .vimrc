@@ -105,8 +105,8 @@ call neobundle#begin(expand('~/.vim/bundle/'))
 "    \}}
 
 NeoBundle 'Align'
+" Pythonの補完機能。
 " NeoBundle 'davidhalter/jedi-vim'
-" g:jedi#show_call_signatures = 1
 NeoBundleLazy "davidhalter/jedi-vim", {
       \ "rev" : 'dev',
       \ "autoload": {
@@ -151,7 +151,10 @@ NeoBundle 'Shougo/neosnippet-snippets'
 NeoBundle 'thinca/vim-quickrun'
 let g:quickrun_config = {'*': {'hook/time/enable': '1'},}
 
+" Pythonの文法のチェッカー。
+" FIXME: これを利用しようとすると、jedi-vimとの相性が悪く、エラーが出てしまう。
 " NeoBundle 'andviro/flake8-vim'
+
 NeoBundle 'hynek/vim-python-pep8-indent'
 
 " テキストオブジェクトの拡張。
@@ -166,7 +169,8 @@ NeoBundle 'othree/html5.vim'
 
 " JavaScript
 NeoBundle 'pangloss/vim-javascript'
-
+" JavaScriptの補完機能。
+NeoBundle 'marijnh/tern_for_vim'
 
 " neocomplete.vimのインストールと設定。
 NeoBundle 'Shougo/neocomplete.vim'
@@ -226,7 +230,7 @@ inoremap <expr><BS> neocomplete#smart_close_popup()."\<C-h>"
 " Enable omni completion.
 autocmd FileType css setlocal omnifunc=csscomplete#CompleteCSS
 autocmd FileType html,markdown setlocal omnifunc=htmlcomplete#CompleteTags
-autocmd FileType javascript setlocal omnifunc=javascriptcomplete#CompleteJS
+" autocmd FileType javascript setlocal omnifunc=javascriptcomplete#CompleteJS
 autocmd FileType python setlocal omnifunc=pythoncomplete#Complete
 autocmd FileType xml setlocal omnifunc=xmlcomplete#CompleteTags
 
