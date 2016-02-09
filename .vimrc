@@ -1,4 +1,5 @@
-" set nocompatible
+set nocompatible
+filetype off
 
 " MacVim Kaoriyaで読み込むPythonの指定。
 set pythondll=/usr/local/Cellar/python/2.7.11/Frameworks/Python.framework/Versions/2.7/Python
@@ -71,12 +72,7 @@ call neobundle#begin(expand('~/.vim/bundle/'))
 
 " Python関係。
 " Pythonの補完機能。
-" NeoBundle 'davidhalter/jedi-vim'
-NeoBundleLazy "davidhalter/jedi-vim", {
-      \ "rev" : 'dev',
-      \ "autoload": {
-      \ "filetypes": [ "python", "python3", "djangohtml"]}}
-
+NeoBundle 'davidhalter/jedi-vim'
 " jedi-vimでの補完などに際に、docstringを表示させない。
 autocmd FileType python setlocal completeopt-=preview
 " Pythonの文法のチェッカー。
@@ -240,4 +236,6 @@ let g:indent_guides_guide_size = 1 "インデントの色付け幅
 
 call neobundle#end()
 
+
+filetype on
 filetype plugin indent on
