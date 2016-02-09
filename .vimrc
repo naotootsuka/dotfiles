@@ -3,6 +3,12 @@ filetype off
 
 " MacVim Kaoriyaで読み込むPythonの指定。
 set pythondll=/usr/local/Cellar/python/2.7.11/Frameworks/Python.framework/Versions/2.7/Python
+" undoファイルを作らないようにする。
+set noundofile
+" バックアップファイルを作らない。
+set nobackup
+" .swpファイルを作らない。
+set noswapfile
 
 " lilypond用
 set runtimepath+=/applications/LilyPond.app/contents/resources/share/lilypond/current/vim/
