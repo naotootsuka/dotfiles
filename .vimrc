@@ -1,3 +1,6 @@
+" MacVim Kaoriyaで読み込むPythonの指定。
+set pythondll=/usr/local/Cellar/python/2.7.11/Frameworks/Python.framework/Versions/2.7/Python
+
 " 表示関係
 colorscheme molokai
 syntax on
@@ -102,7 +105,13 @@ call neobundle#begin(expand('~/.vim/bundle/'))
 "    \}}
 
 NeoBundle 'Align'
-NeoBundle 'davidhalter/jedi-vim'
+" NeoBundle 'davidhalter/jedi-vim'
+" g:jedi#show_call_signatures = 1
+NeoBundleLazy "davidhalter/jedi-vim", {
+      \ "rev" : 'dev',
+      \ "autoload": {
+      \ "filetypes": [ "python", "python3", "djangohtml"]}}
+
 "NeoBundle 'git://github.com/kevinw/pyflakes-vim.git'
 NeoBundle 'mattn/emmet-vim'
 NeoBundle 'Townk/vim-autoclose'
@@ -142,7 +151,7 @@ NeoBundle 'Shougo/neosnippet-snippets'
 NeoBundle 'thinca/vim-quickrun'
 let g:quickrun_config = {'*': {'hook/time/enable': '1'},}
 
-NeoBundle 'andviro/flake8-vim'
+" NeoBundle 'andviro/flake8-vim'
 NeoBundle 'hynek/vim-python-pep8-indent'
 
 " テキストオブジェクトの拡張。
@@ -158,6 +167,83 @@ NeoBundle 'othree/html5.vim'
 " JavaScript
 NeoBundle 'pangloss/vim-javascript'
 
+
+" neocomplete.vimのインストールと設定。
+NeoBundle 'Shougo/neocomplete.vim'
+
+" Disable AutoComplPop.
+let g:acp_enableAtStartup = 0
+" Use neocomplete.
+let g:neocomplete#enable_at_startup = 1
+" Use smartcase.
+let g:neocomplete#enable_smart_case = 1
+" Set minimum syntax keyword length.
+let g:neocomplete#sources#syntax#min_keyword_length = 3
+let g:neocomplete#lock_buffer_name_pattern = '\*ku\*'
+
+" Define dictionary.
+let g:neocomplete#sources#dictionary#dictionaries = {
+    \ 'default' : '',
+    \ 'vimshell' : $HOME.'/.vimshell_hist',
+    \ 'scheme' : $HOME.'/.gosh_completions'
+        \ }
+
+" Define keyword.
+if !exists('g:neocomplete#keyword_patterns')
+    let g:neocomplete#keyword_patterns = {}
+endif
+let g:neocomplete#keyword_patterns['default'] = '\h\w*'
+
+" Plugin key-mappings.
+inoremap <expr><C-g>     neocomplete#undo_completion()
+inoremap <expr><C-l>     neocomplete#complete_common_string()
+
+" Recommended key-mappings.
+" <CR>: close popup and save indent.
+inoremap <silent> <CR> <C-r>=<SID>my_cr_function()<CR>
+function! s:my_cr_function()
+  return (pumvisible() ? "\<C-y>" : "" ) . "\<CR>"
+  " For no inserting <CR> key.
+  "return pumvisible() ? "\<C-y>" : "\<CR>"
+endfunction
+" <TAB>: completion.
+inoremap <expr><TAB>  pumvisible() ? "\<C-n>" : "\<TAB>"
+" <C-h>, <BS>: close popup and delete backword char.
+inoremap <expr><C-h> neocomplete#smart_close_popup()."\<C-h>"
+inoremap <expr><BS> neocomplete#smart_close_popup()."\<C-h>"
+" Close popup by <Space>.
+"inoremap <expr><Space> pumvisible() ? "\<C-y>" : "\<Space>"
+
+" AutoComplPop like behavior.
+"let g:neocomplete#enable_auto_select = 1
+
+" Shell like behavior(not recommended).
+"set completeopt+=longest
+"let g:neocomplete#enable_auto_select = 1
+"let g:neocomplete#disable_auto_complete = 1
+"inoremap <expr><TAB>  pumvisible() ? "\<Down>" : "\<C-x>\<C-u>"
+
+" Enable omni completion.
+autocmd FileType css setlocal omnifunc=csscomplete#CompleteCSS
+autocmd FileType html,markdown setlocal omnifunc=htmlcomplete#CompleteTags
+autocmd FileType javascript setlocal omnifunc=javascriptcomplete#CompleteJS
+autocmd FileType python setlocal omnifunc=pythoncomplete#Complete
+autocmd FileType xml setlocal omnifunc=xmlcomplete#CompleteTags
+
+" Enable heavy omni completion.
+if !exists('g:neocomplete#sources#omni#input_patterns')
+  let g:neocomplete#sources#omni#input_patterns = {}
+endif
+"let g:neocomplete#sources#omni#input_patterns.php = '[^. \t]->\h\w*\|\h\w*::'
+"let g:neocomplete#sources#omni#input_patterns.c = '[^.[:digit:] *\t]\%(\.\|->\)'
+"let g:neocomplete#sources#omni#input_patterns.cpp = '[^.[:digit:] *\t]\%(\.\|->\)\|\h\w*::'
+
+" For perlomni.vim setting.
+" https://github.com/c9s/perlomni.vim
+let g:neocomplete#sources#omni#input_patterns.perl = '\h\w*->\h\w*\|\h\w*::'
+" neocomplete.vimの設定終わり。
+
+
 NeoBundle 'nathanaelkane/vim-indent-guides'
 call neobundle#end()
 " vim-indent-guidesの設定。
@@ -169,6 +255,8 @@ autocmd VimEnter,Colorscheme * :hi IndentGuidesOdd ctermbg=black guibg=black cte
 " 偶数段のインデントの色
 autocmd VimEnter,Colorscheme * :hi IndentGuidesEven ctermbg=darkgrey guibg=darkgrey ctermbg=2
 let g:indent_guides_guide_size = 1 "インデントの色付け幅
-" NeoBundle 'Shougo/vimproc'
+
+
+
 
 filetype plugin indent on

@@ -37,6 +37,7 @@ export PATH=/usr/texbin:$PATH
 
 # aliasの設定
 #alias python="/usr/bin/python"
+alias vi="vim"
 alias pk="cd ~/dropbox/python関係"
 alias tp="cd ~/dropbox/python関係/django/testproject"
 alias mtp="python ~/dropbox/python関係/django/testproject/manage.py runserver --insecure"
