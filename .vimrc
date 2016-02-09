@@ -98,11 +98,6 @@ if has('vim_starting')
 endif
 
 call neobundle#begin(expand('~/.vim/bundle/'))
-" JavaScriptの補完機能。
-"NeoBundle 'marijnh/tern_for_vim', {
-"    \ 'build': {
-"    \   'others': 'npm install'
-"    \}}
 
 NeoBundle 'Align'
 " Pythonの補完機能。
@@ -171,6 +166,8 @@ NeoBundle 'othree/html5.vim'
 NeoBundle 'pangloss/vim-javascript'
 " JavaScriptの補完機能。
 NeoBundle 'marijnh/tern_for_vim'
+
+NeoBundleLazy 'jelera/vim-javascript-syntax', {'autoload':{'filetypes':['javascript']}}
 
 " neocomplete.vimのインストールと設定。
 NeoBundle 'Shougo/neocomplete.vim'
