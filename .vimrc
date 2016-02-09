@@ -1,46 +1,30 @@
+" set nocompatible
+
 " MacVim Kaoriyaで読み込むPythonの指定。
 set pythondll=/usr/local/Cellar/python/2.7.11/Frameworks/Python.framework/Versions/2.7/Python
+
+" lilypond用
+set runtimepath+=/applications/LilyPond.app/contents/resources/share/lilypond/current/vim/
 
 " 表示関係
 colorscheme molokai
 syntax on
-"let g:molokai_original = 1
-"let g:rehash256 = 1
-"set background=dark
 set number " 行数の表示
 set title " 編集ファイルを常に表示
-"set ruler " カーソルの位置を表示
 set autoindent " インデントがそろうように自動的にスペースを入れる
-"set cindent
-"set smartindent cinwords=if,elif,else,for,while,try,except,finally,def,class
-"set tabstop=8 shiftwidth=4 softtabstop=4
 set expandtab "タブをスペースに置き換える
 set smarttab
-"set tabstop=4 shiftwidth=4 softtabstop=0
-"set tabstop=4 shiftwidth=4
-"set list " 不可視文字の可視化
 set wrap " 長いテキストの折り返し
 set textwidth=0 " 自動的に改行が入るのを無効化
 set colorcolumn=80 " その代わり80文字目にラインを入れる
-" デフォルト不可視文字は美しくないのでUnicodeで綺麗に
-"set listchars=tab:»-,trail:-,extends:»,precedes:«,nbsp:%,eol:↲
 set laststatus=2 " 画面最下部のステータス行を常に表示。
 set cursorline " カーソル行の色の変更。
 
 " 編集関係
-"set virtualedit=all " カーソルを文字が存在しない部分でも動けるようにする
 set showmatch " 対応する括弧などをハイライト表示する
-"set matchtime=3 " 対応括弧のハイライト表示を3秒にする
-"set paste " コピーしたテキストをペーストするときのオートインデント無効
-" 括弧を自動補完、改造版
-" inoremap {{ {}<LEFT>
-" inoremap [[ []<LEFT>
-" inoremap (( ()<LEFT>
-" inoremap "" ""<LEFT>
-" inoremap '' ''<LEFT>
-" inoremap << <><LEFT>
 set matchpairs& matchpairs+=<:> " 対応括弧に'<'と'>'のペアを追加
 set backspace=indent,eol,start " バックスペースでなんでも消せるようにする
+
 " クリップボードの有効化。
 set clipboard+=unnamed
 
@@ -55,6 +39,7 @@ set incsearch " インクリメンタルサーチを行う。
 set wildmenu " コマンドモードでの補完モード。
 set wildmode=list:full " 補完モードの表示方法の指定。
 set wildignore=*.o,*.obj,*.pyc,*.so,*.dll " 無視されるファイルパターン。
+
 "検索語が画面の真ん中に来るようにする
 nmap n nzz 
 nmap N Nzz 
@@ -73,22 +58,7 @@ nnoremap <Up>   gk
 nnoremap ,p "*p
 inoremap <silent> jj <ESC>
 
-" 編集中のファイルを実行する系
-" http://qiita.com/smison/items/58a18b2bb27f2eff2f2a
-" autocmd BufNewFile,BufRead *.py nnoremap <C-e> :!python %
-
-" Python関係
-autocmd FileType python setlocal completeopt-=preview
-
-" lilypond用
-set runtimepath+=/applications/LilyPond.app/contents/resources/share/lilypond/current/vim/
-
-" javascript
-" au FileType javascript call JavaScriptFold()
-
-set nocompatible
-"filetype plugin indent off
-
+" NeoBundleの設定。
 if has('vim_starting')
     set runtimepath+=~/.vim/bundle/neobundle.vim
     " call neobundle#rc(expand('~/.vim/bundle/'))
@@ -99,7 +69,7 @@ endif
 
 call neobundle#begin(expand('~/.vim/bundle/'))
 
-NeoBundle 'Align'
+" Python関係。
 " Pythonの補完機能。
 " NeoBundle 'davidhalter/jedi-vim'
 NeoBundleLazy "davidhalter/jedi-vim", {
@@ -107,10 +77,33 @@ NeoBundleLazy "davidhalter/jedi-vim", {
       \ "autoload": {
       \ "filetypes": [ "python", "python3", "djangohtml"]}}
 
-"NeoBundle 'git://github.com/kevinw/pyflakes-vim.git'
+" jedi-vimでの補完などに際に、docstringを表示させない。
+autocmd FileType python setlocal completeopt-=preview
+" Pythonの文法のチェッカー。
+" FIXME: これを利用しようとすると、jedi-vimとの相性が悪く、エラーが出てしまう。
+" NeoBundle 'andviro/flake8-vim'
+NeoBundle 'hynek/vim-python-pep8-indent'
+
+" HTML関係。
 NeoBundle 'mattn/emmet-vim'
-NeoBundle 'Townk/vim-autoclose'
-NeoBundle 'tpope/vim-surround'
+NeoBundle 'hail2u/vim-css3-syntax'
+NeoBundle 'othree/html5.vim'
+
+
+" JavaScript関係。
+NeoBundle 'pangloss/vim-javascript'
+" JavaScriptの補完機能。
+NeoBundle 'marijnh/tern_for_vim'
+" シンタックスハイライト。
+NeoBundleLazy 'jelera/vim-javascript-syntax', {'autoload':{'filetypes':['javascript']}}
+" docstringを表示させない。
+autocmd FileType javascript setlocal completeopt-=preview
+
+
+" vim全般関係のプラグイン。
+" ファイルの整形。
+" http://nanasi.jp/articles/vim/align/align_vim_ctrl.html
+NeoBundle 'Align'
 NeoBundle 'Shougo/unite.vim'
 " バッファ一覧
 nnoremap <silent> ,b :<C-u>Unite buffer<CR>
@@ -135,40 +128,29 @@ endfunction"}}}
 " 関数やクラス、メソッドのアウトラインの表示。
 NeoBundle 'Shougo/unite-outline'
 nnoremap <silent> ,o :<C-u>Unite outline<CR>
+
 " ヤンクの履歴
 NeoBundle 'Shougo/neoyank.vim'
 nnoremap <silent> ,y :<C-u>Unite history/yank <CR>
 
+" スニペット。
 NeoBundle 'Shougo/neosnippet'
 NeoBundle 'Shougo/neosnippet-snippets'
+
+" クオーテーションやカッコを自動的に閉じる。
+" FIXME: PythonやJavaScriptではクオーテーションが動作しない。
+NeoBundle 'Townk/vim-autoclose'
+NeoBundle 'tpope/vim-surround'
 
 " 編集中のファイルの実行。
 NeoBundle 'thinca/vim-quickrun'
 let g:quickrun_config = {'*': {'hook/time/enable': '1'},}
-
-" Pythonの文法のチェッカー。
-" FIXME: これを利用しようとすると、jedi-vimとの相性が悪く、エラーが出てしまう。
-" NeoBundle 'andviro/flake8-vim'
-
-NeoBundle 'hynek/vim-python-pep8-indent'
 
 " テキストオブジェクトの拡張。
 NeoBundle 'kana/vim-operator-user'
 NeoBundle 'kana/vim-textobj-user'
 " インデントレベルを操作可能。
 NeoBundle 'kana/vim-textobj-indent'
-
-" HTML関係。
-NeoBundle 'hail2u/vim-css3-syntax'
-NeoBundle 'othree/html5.vim'
-
-" JavaScript
-NeoBundle 'pangloss/vim-javascript'
-" JavaScriptの補完機能。
-NeoBundle 'marijnh/tern_for_vim'
-
-NeoBundleLazy 'jelera/vim-javascript-syntax', {'autoload':{'filetypes':['javascript']}}
-
 " neocomplete.vimのインストールと設定。
 NeoBundle 'Shougo/neocomplete.vim'
 
@@ -246,7 +228,6 @@ let g:neocomplete#sources#omni#input_patterns.perl = '\h\w*->\h\w*\|\h\w*::'
 
 
 NeoBundle 'nathanaelkane/vim-indent-guides'
-call neobundle#end()
 " vim-indent-guidesの設定。
 let g:indent_guides_enable_on_vim_startup=1 "vim立ち上げ時に自動的にvim-indent-guidesをオンにする
 let g:indent_guides_auto_colors = 0 "autoにするとよく見えなかったので自動的に色付けするのはストップ
@@ -257,7 +238,6 @@ autocmd VimEnter,Colorscheme * :hi IndentGuidesOdd ctermbg=black guibg=black cte
 autocmd VimEnter,Colorscheme * :hi IndentGuidesEven ctermbg=darkgrey guibg=darkgrey ctermbg=2
 let g:indent_guides_guide_size = 1 "インデントの色付け幅
 
-
-
+call neobundle#end()
 
 filetype plugin indent on
