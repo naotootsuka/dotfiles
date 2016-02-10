@@ -97,7 +97,8 @@ NeoBundle 'pangloss/vim-javascript'
 " JavaScriptの補完機能。
 NeoBundle 'marijnh/tern_for_vim'
 " シンタックスハイライト。
-NeoBundleLazy 'jelera/vim-javascript-syntax', {'autoload':{'filetypes':['javascript']}}
+" NeoBundleLazy 'jelera/vim-javascript-syntax', {'autoload':{'filetypes':['javascript']}}
+NeoBundle 'jelera/vim-javascript-syntax', {'autoload':{'filetypes':['javascript']}}
 " docstringを表示させない。
 autocmd FileType javascript setlocal completeopt-=preview
 
