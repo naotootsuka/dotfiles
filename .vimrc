@@ -98,7 +98,7 @@ NeoBundle 'pangloss/vim-javascript'
 NeoBundle 'marijnh/tern_for_vim'
 " シンタックスハイライト。
 " NeoBundleLazy 'jelera/vim-javascript-syntax', {'autoload':{'filetypes':['javascript']}}
-NeoBundle 'jelera/vim-javascript-syntax', {'autoload':{'filetypes':['javascript']}}
+NeoBundle 'jelera/vim-javascript-syntax'
 " docstringを表示させない。
 autocmd FileType javascript setlocal completeopt-=preview
 
@@ -148,6 +148,11 @@ NeoBundle 'tpope/vim-surround'
 " 編集中のファイルの実行。
 NeoBundle 'thinca/vim-quickrun'
 let g:quickrun_config = {'*': {'hook/time/enable': '1'},}
+" qでquickfixをすぐ閉じれるようにする。
+au FileType qf nnoremap <silent><buffer>q :quit<CR>
+" ,rですぐ実行できるようにする。
+let g:quickrun_no_default_key_mappings = 1
+nnoremap ,r :cclose<CR>:QuickRun -mode n<CR>
 
 " テキストオブジェクトの拡張。
 NeoBundle 'kana/vim-operator-user'
