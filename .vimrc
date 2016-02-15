@@ -101,7 +101,10 @@ NeoBundle 'marijnh/tern_for_vim'
 NeoBundle 'jelera/vim-javascript-syntax'
 " docstringを表示させない。
 autocmd FileType javascript setlocal completeopt-=preview
-
+NeoBundle 'scrooloose/syntastic'
+let g:syntastic_mode_map = {'mode': 'passive',
+                          \ 'active_filetypes': [],
+                          \ 'passive_filetypes': ['javascript', 'python']}
 
 " vim全般関係のプラグイン。
 " ファイルの整形。
