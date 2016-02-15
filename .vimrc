@@ -105,6 +105,7 @@ NeoBundle 'scrooloose/syntastic'
 let g:syntastic_mode_map = {'mode': 'passive',
                           \ 'active_filetypes': [],
                           \ 'passive_filetypes': ['javascript', 'python']}
+nnoremap ,c :SyntasticCheck<CR>:Errors<CR>
 
 " vim全般関係のプラグイン。
 " ファイルの整形。
