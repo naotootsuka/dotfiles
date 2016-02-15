@@ -101,10 +101,12 @@ NeoBundle 'marijnh/tern_for_vim'
 NeoBundle 'jelera/vim-javascript-syntax'
 " docstringを表示させない。
 autocmd FileType javascript setlocal completeopt-=preview
+" JavaScriptの構文チェック。Pythonもできる。
 NeoBundle 'scrooloose/syntastic'
 let g:syntastic_mode_map = {'mode': 'passive',
                           \ 'active_filetypes': [],
                           \ 'passive_filetypes': ['javascript', 'python']}
+" 構文チェックを、,cで実行できるキーバインド。
 nnoremap ,c :SyntasticCheck<CR>:Errors<CR>
 
 " vim全般関係のプラグイン。
@@ -139,6 +141,9 @@ nnoremap <silent> ,o :<C-u>Unite outline<CR>
 " ヤンクの履歴
 NeoBundle 'Shougo/neoyank.vim'
 nnoremap <silent> ,y :<C-u>Unite history/yank <CR>
+
+" 文末の半角スペースの可視化。
+NeoBundle 'bronson/vim-trailing-whitespace'
 
 " スニペット。
 NeoBundle 'Shougo/neosnippet'
