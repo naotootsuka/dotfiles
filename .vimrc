@@ -15,7 +15,6 @@ set runtimepath+=/applications/LilyPond.app/contents/resources/share/lilypond/cu
 
 " Markdown用
 " http://qiita.com/uedatakeshi/items/31761b87ba8ecbaf2c1e
-au BufRead,BufNewFile *.md set filetype=markdown
 let g:previm_open_cmd = 'open -a Google\ Chrome'
 nnoremap ,p :PrevimOpen<CR>
 
