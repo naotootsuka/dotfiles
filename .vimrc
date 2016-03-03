@@ -13,6 +13,12 @@ set noswapfile
 " lilypond用
 set runtimepath+=/applications/LilyPond.app/contents/resources/share/lilypond/current/vim/
 
+" Markdown用
+" http://qiita.com/uedatakeshi/items/31761b87ba8ecbaf2c1e
+au BufRead,BufNewFile *.md set filetype=markdown
+let g:previm_open_cmd = 'open -a Google\ Chrome'
+nnoremap ,p :PrevimOpen<CR>
+
 " 表示関係
 colorscheme molokai
 syntax on
@@ -48,11 +54,11 @@ set wildmode=list:full " 補完モードの表示方法の指定。
 set wildignore=*.o,*.obj,*.pyc,*.so,*.dll " 無視されるファイルパターン。
 
 "検索語が画面の真ん中に来るようにする
-nmap n nzz 
-nmap N Nzz 
-nmap * *zz 
-nmap # #zz 
-nmap g* g*zz 
+nmap n nzz
+nmap N Nzz
+nmap * *zz
+nmap # #zz
+nmap g* g*zz
 nmap g# g#zz
 
 " キーバインド
@@ -62,7 +68,7 @@ nnoremap j gj
 nnoremap k gk
 nnoremap <Down> gj
 nnoremap <Up>   gk
-nnoremap ,p "*p
+" nnoremap ,p "*p
 inoremap <silent> jj <ESC>
 
 " NeoBundleの設定。
@@ -76,6 +82,7 @@ endif
 
 call neobundle#begin(expand('~/.vim/bundle/'))
 
+
 " Python関係。
 " Pythonの補完機能。
 NeoBundle 'davidhalter/jedi-vim'
@@ -86,10 +93,17 @@ autocmd FileType python setlocal completeopt-=preview
 " NeoBundle 'andviro/flake8-vim'
 NeoBundle 'hynek/vim-python-pep8-indent'
 
+
 " HTML関係。
 NeoBundle 'mattn/emmet-vim'
 NeoBundle 'hail2u/vim-css3-syntax'
 NeoBundle 'othree/html5.vim'
+
+
+" Markdown関係。
+NeoBundle 'tpope/vim-markdown'
+NeoBundle 'tyru/open-browser.vim'
+NeoBundle 'kannokanno/previm'
 
 
 " JavaScript関係。
@@ -108,6 +122,7 @@ let g:syntastic_mode_map = {'mode': 'passive',
                           \ 'passive_filetypes': ['javascript', 'python']}
 " 構文チェックを、,cで実行できるキーバインド。
 nnoremap ,c :SyntasticCheck<CR>:Errors<CR>
+
 
 " vim全般関係のプラグイン。
 " ファイルの整形。
