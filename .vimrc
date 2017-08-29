@@ -176,6 +176,12 @@ au FileType qf nnoremap <silent><buffer>q :quit<CR>
 " ,rですぐ実行できるようにする。
 let g:quickrun_no_default_key_mappings = 1
 nnoremap ,r :cclose<CR>:QuickRun -mode n<CR>
+if neobundle#tap('vim-quickrun') "{{{
+                \ 'java' : {
+                \ 'hook/output_encode/enable' : 1,
+                \ 'hook/output_encode/encoding' : 'sjis',
+                \ }
+endif "}}}
 
 " テキストオブジェクトの拡張。
 NeoBundle 'kana/vim-operator-user'
