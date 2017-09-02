@@ -13,6 +13,9 @@ set noswapfile
 " lilypond用
 set runtimepath+=/applications/LilyPond.app/contents/resources/share/lilypond/current/vim/
 
+" Javaでシンタックスハイライトを有効にする
+let java_highlight_all=1
+
 " Markdown用
 " http://qiita.com/uedatakeshi/items/31761b87ba8ecbaf2c1e
 let g:previm_open_cmd = 'open -a Google\ Chrome'
